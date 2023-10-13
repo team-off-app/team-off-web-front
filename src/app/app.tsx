@@ -1,12 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-
-import NxWelcome from './nx-welcome';
+import { Button } from 'antd';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="team-off" />
+      <Button type="primary">Ant Design</Button>
     </div>
   );
 }
