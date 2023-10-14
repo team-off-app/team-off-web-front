@@ -1,13 +1,20 @@
 {
-  "name": "e2e",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "e2e/src",
+  "name": "team-off-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/team-off-e2e/src",
   "projectType": "application",
   "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/team-off-e2e/**/*.{js,ts}"]
+      }
+    },
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "e2e/cypress.config.ts",
+        "cypressConfig": "apps/team-off-e2e/cypress.config.ts",
         "devServerTarget": "team-off:serve:development",
         "testingType": "e2e"
       },
@@ -18,13 +25,6 @@
         "ci": {
           "devServerTarget": "team-off:serve-static"
         }
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["e2e/**/*.{js,ts}"]
       }
     }
   },
