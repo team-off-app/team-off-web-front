@@ -22,10 +22,17 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
 
+  // @ts-ignore
   test: {
     globals: true,
     cache: { dir: '../../node_modules/.vitest' },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+  },
+
+  resolve: {
+    alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc',
+    },
   },
 });
