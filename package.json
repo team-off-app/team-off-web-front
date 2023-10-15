@@ -1,13 +1,23 @@
 {
   "name": "team-off",
   "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
     "build": "nx build",
+    "start": "nx serve",
     "test": "nx test"
   },
-  "private": true,
+  "dependencies": {
+    "@mui/material": "^5.14.13",
+    "@mui/styled-engine-sc": "^5.0.0",
+    "@swc/helpers": "~0.5.2",
+    "classnames": "^2.3.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "styled-components": "^6.1.0",
+    "tslib": "^2.3.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
@@ -53,15 +63,5 @@
     "vite-plugin-svgr": "^4.1.0",
     "vitest": "~0.32.0"
   },
-  "packageManager": "yarn@3.6.1",
-  "dependencies": {
-    "@mui/material": "^5.14.13",
-    "@mui/styled-engine-sc": "^5.0.0",
-    "@swc/helpers": "~0.5.2",
-    "classnames": "^2.3.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "styled-components": "^6.1.0",
-    "tslib": "^2.3.0"
-  }
+  "packageManager": "yarn@3.6.1"
 }
