@@ -63,8 +63,5 @@
     "react-dom": "18.2.0",
     "styled-components": "^6.1.0",
     "tslib": "^2.3.0"
-  },
-  "alias": {
-    "@mui/styled-engine": "@mui/styled-engine-sc"
   }
 }
