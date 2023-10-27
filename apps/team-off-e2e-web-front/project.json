@@ -1,0 +1,33 @@
+{
+  "name": "team-off-e2e-web-front",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/team-off-e2e-web-front/src",
+  "projectType": "application",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/team-off-e2e-web-front/**/*.{js,ts}"]
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/team-off-e2e-web-front/cypress.config.ts",
+        "devServerTarget": "team-off-web-front:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "team-off-web-front:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "team-off-web-front:serve-static"
+        }
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["team-off-web-front"]
+}

@@ -1,7 +1,7 @@
 {
-  "name": "team-off",
+  "name": "team-off-web-front",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/team-off/src",
+  "sourceRoot": "apps/team-off-web-front/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -24,15 +24,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "team-off:build"
+        "buildTarget": "team-off-web-front:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "team-off:build:development",
+          "buildTarget": "team-off-web-front:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "team-off:build:production",
+          "buildTarget": "team-off-web-front:build:production",
           "hmr": false
         }
       }
@@ -41,14 +41,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "team-off:build"
+        "buildTarget": "team-off-web-front:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "team-off:build:development"
+          "buildTarget": "team-off-web-front:build:development"
         },
         "production": {
-          "buildTarget": "team-off:build:production"
+          "buildTarget": "team-off-web-front:build:production"
         }
       }
     },
@@ -64,13 +64,13 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/team-off/src/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/team-off-web-front/src/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "team-off:build"
+        "buildTarget": "team-off-web-front:build"
       }
     }
   },
