@@ -1,7 +1,5 @@
-import DirectionsIcon from '@mui/icons-material/Directions';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Divider, IconButton, InputBase, Paper } from '@mui/material';
+import { Box, IconButton, InputBase, Paper } from '@mui/material';
 import { bgColor, borderColor, searchBoxSpan } from '../../constants';
 
 export function SearchUsers() {
