@@ -1,0 +1,16 @@
+{
+  "name": "@team-off/theme",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "@team-off/theme/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["@team-off/theme/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
