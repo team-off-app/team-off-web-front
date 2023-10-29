@@ -1,5 +1,5 @@
 export const lightBlue = {
-  '50': '#f8fafc',
+  '50': '#f7fafc',
   '100': '#e0e6ed',
   '200': '#c8d2de',
   '300': '#b0becf',
