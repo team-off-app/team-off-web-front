@@ -1,0 +1,16 @@
+{
+  "name": "@team-off/error-overlay",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "@team-off/error-overlay/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["@team-off/error-overlay/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
