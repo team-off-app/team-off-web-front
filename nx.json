@@ -58,6 +58,9 @@
         "linter": "eslint",
         "unitTestRunner": "none"
       }
+    },
+    "@nx/workspace:move": {
+      "projectNameAndRootFormat": "as-provided"
     }
   },
   "defaultProject": "team-off-web-front"

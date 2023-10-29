@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { Calendar } from '@team-off/calendar';
@@ -23,7 +23,9 @@ export function App() {
       </AppBar>
 
       <Container>
-        <Calendar />
+        <Box py={3}>
+          <Calendar />
+        </Box>
       </Container>
     </>
   );

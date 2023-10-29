@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@richardaum/msw-ui": ["@richardaum/msw-ui/src/index.ts"],
-      "@team-off/calendar": ["@team-off/calendar/src/index.ts"]
+      "@team-off/calendar": ["@team-off/calendar/src/index.ts"],
+      "@team-off/error-overlay": ["@team-off/error-overlay/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

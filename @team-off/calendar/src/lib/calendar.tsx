@@ -1,79 +1,94 @@
 import { Box, Paper, Typography } from '@mui/material';
 import { range } from 'lodash';
+import { Fragment } from 'react';
 
 /* eslint-disable-next-line */
 export interface CalendarProps {}
 
 const n = 10;
 
+const borderColor = 'grey.400';
+
+const daysPerMonth = 5;
+
 export function Calendar(props: CalendarProps) {
   return (
     <Box
       display="grid"
-      gridTemplateColumns={`repeat(${n}, 60px)`}
-      gridTemplateRows={`repeat(3)`}
+      gridTemplateColumns={`repeat(${15}, 60px)`}
       overflow="auto"
     >
       <Box
         p={1}
-        gridColumn="span 5"
+        gridColumn={`span ${daysPerMonth}`}
         textAlign="center"
         border="1px solid"
-        borderLeft={'1px solid'}
-        borderColor="grey.200"
-      >
-        March
-      </Box>
-      <Box
-        p={1}
-        gridColumn="span 5"
-        textAlign="center"
-        border="1px solid"
-        borderLeft={'none'}
-        borderColor="grey.200"
-      >
-        April
-      </Box>
+        borderColor={borderColor}
+      ></Box>
 
-      {range(n).map((index) => (
+      {['March', 'April'].map((month, index) => (
         <Box
+          key={month}
           p={1}
+          gridColumn={`span ${daysPerMonth}`}
           textAlign="center"
-          key={index}
           border="1px solid"
-          borderLeft={index > 0 ? 'none' : '1px solid'}
-          borderTop="none"
-          borderColor="grey.200"
+          borderColor={borderColor}
+          borderLeft="none"
         >
-          <Typography fontWeight="medium">{index}</Typography>
+          {month}
         </Box>
       ))}
 
+      <Box
+        gridColumn={`span ${daysPerMonth}`}
+        border="1px solid"
+        borderTop="none"
+        borderColor={borderColor}
+      ></Box>
+
       {range(n).map((index) => (
         <Box
           p={1}
-          height="600px"
           textAlign="center"
           key={index}
           border="1px solid"
-          borderLeft={index > 0 ? 'none' : '1px solid'}
           borderTop="none"
-          borderColor="grey.200"
-          position="relative"
+          borderColor={borderColor}
+          borderLeft="none"
         >
-          {[0, 1].includes(index) && (
-            <Paper
-              sx={{
-                display: 'flex',
-                position: 'absolute',
-                zIndex: 1,
-              }}
-            >
-              <Box width={2} bgcolor="tomato" m={1} borderRadius="2px" />
-              <Typography p={1}>Testeasdfasdfadsf</Typography>
-            </Paper>
-          )}
+          <Typography fontWeight="medium">D{index}</Typography>
         </Box>
+      ))}
+
+      {range(5).map((_, index) => (
+        <Fragment key={index}>
+          <Box
+            gridColumn={`span ${daysPerMonth}`}
+            border="1px solid"
+            borderTop="none"
+            borderColor={borderColor}
+          >
+            eu
+          </Box>
+          {range(n).map((index) => (
+            <Box
+              p={1}
+              textAlign="center"
+              key={index}
+              border="1px solid"
+              borderTop="none"
+              borderColor={borderColor}
+              borderLeft="none"
+              position="relative"
+            >
+              <Paper sx={{ display: 'flex', zIndex: 1 }}>
+                <Box width={2} bgcolor="tomato" m={1} borderRadius="2px" />
+                <Typography p={1}>T</Typography>
+              </Paper>
+            </Box>
+          ))}
+        </Fragment>
       ))}
     </Box>
   );
