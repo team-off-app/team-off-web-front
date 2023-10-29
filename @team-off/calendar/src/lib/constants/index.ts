@@ -6,19 +6,15 @@ export const bgColor = lightBlue['50'];
 
 export const months = [
   {
-    name: 'Janeiro',
-    days: 2,
+    name: 'March',
+    days: 6,
   },
   {
-    name: 'Fevereiro',
-    days: 2,
-  },
-  {
-    name: 'Março',
+    name: 'April',
     days: 4,
   },
 ];
 
 export const days = months.reduce((acc, month) => acc + month.days, 0);
 
-export const searchBoxSpan = ['MONTHS', 'DAYS'].length;
+export const searchBoxSpan = ['MONTHS_ROW', 'DAYS_ROW'].length;
