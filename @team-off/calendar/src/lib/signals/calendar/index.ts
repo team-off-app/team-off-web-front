@@ -2,7 +2,7 @@ import { computed } from '@preact/signals-react';
 import dayjs from 'dayjs';
 
 export const calendarDateRange = computed(() => {
-  const referenceDate = dayjs('2023-11-01');
+  const referenceDate = dayjs().startOf('day');
   const startReferenceDate = referenceDate.subtract(4, 'day');
   const endReferenceDate = referenceDate.add(6, 'day');
   const range = [];

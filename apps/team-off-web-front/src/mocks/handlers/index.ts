@@ -37,6 +37,39 @@ export const handlers = [
           },
         ],
       },
+      {
+        id: '6c97dcd8-5d44-4042-876b-2d753f9847e0',
+        name: 'Rodrigo Barbosa',
+        photoUrl: 'rodrigo-barbosa.png',
+        teams: [
+          {
+            id: '6ad1a1e4-acef-4f94-a080-1372a0811c6c',
+            name: 'Marketing',
+          },
+          {
+            id: '24dd319a-d313-439a-b6a8-9aa033244e29',
+            name: 'Tecnologia',
+          },
+        ],
+        events: [
+          {
+            id: '3cc49fbd-808c-46a9-9cb7-c1576e6f6ded',
+            title: null,
+            startDate: '2023-03-29T01:34:23',
+            endDate: '2023-03-30T01:34:23',
+            notes: null,
+            type: 'VACATION',
+          },
+          {
+            id: '1d68ab41-c142-41e0-8cb3-9cf81556b158',
+            title: null,
+            startDate: '2023-04-03T01:34:23',
+            endDate: '2023-04-04T01:34:23',
+            notes: null,
+            type: 'VACATION',
+          },
+        ],
+      },
     ]);
   }),
 ];
