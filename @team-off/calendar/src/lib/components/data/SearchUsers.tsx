@@ -1,6 +1,10 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputBase, Paper } from '@mui/material';
 import { bgColor, borderColor, searchBoxSpan } from '../../constants';
+import { signal } from '@preact/signals-react';
+import axios from 'axios';
+
+const term = signal('');
 
 export function SearchUsers() {
   return (
@@ -23,12 +27,25 @@ export function SearchUsers() {
         <IconButton sx={{ p: '10px' }} aria-label="search" disabled>
           <SearchIcon />
         </IconButton>
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="Search user"
-          inputProps={{ 'aria-label': 'search user' }}
-        />
+        <Input />
       </Paper>
     </Box>
+  );
+}
+
+function Input() {
+  return (
+    <InputBase
+      value={term.value}
+      onChange={(e) => {
+        term.value = e.currentTarget.value;
+
+        axios.get('/users')
+          .then((res) => console.log(res.data))
+      }}
+      sx={{ ml: 1, flex: 1 }}
+      placeholder="Search user"
+      inputProps={{ 'aria-label': 'search user' }}
+    />
   );
 }

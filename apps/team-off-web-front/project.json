@@ -72,6 +72,13 @@
       "options": {
         "buildTarget": "team-off-web-front:build"
       }
+    },
+    "msw": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/team-off-web-front",
+        "command": "npx msw init public --save"
+      }
     }
   },
   "tags": []

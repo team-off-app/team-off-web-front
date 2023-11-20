@@ -1,7 +1,11 @@
 import { Avatar, Box, Typography } from '@mui/material';
+import { computed } from '@preact/signals-react';
 import { bgColor, borderColor } from '../../constants';
+import { User } from '../../services/users/types';
 
-export function UserData() {
+export function UserData({ user }: { user: User }) {
+  const teams = computed(() => user.teams?.map((team) => team.name).join(', '));
+
   return (
     <Box bgcolor={bgColor} mr={2}>
       <Box
@@ -15,9 +19,9 @@ export function UserData() {
       >
         <Avatar>H</Avatar>
         <Box display="block">
-          <Typography variant="body1">Linda</Typography>
+          <Typography variant="body1">{user.name}</Typography>
           <Typography variant="body2" color="text.secondary">
-            Digital marketing
+            {teams.value}
           </Typography>
         </Box>
       </Box>

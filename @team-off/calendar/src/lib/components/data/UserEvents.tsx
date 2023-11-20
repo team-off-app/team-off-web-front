@@ -2,8 +2,9 @@ import { Box, Paper, Typography } from '@mui/material';
 import { range } from 'lodash';
 import { Fragment } from 'react';
 import { borderColor, days } from '../../constants';
+import { User } from '../../services/users/types';
 
-export function UserEvents() {
+export function UserEvents({ user }: { user: User }) {
   return (
     <Fragment>
       {range(days).map((index) => (
@@ -20,6 +21,7 @@ export function UserEvents() {
           display="flex"
           justifyContent="stretch"
           alignItems="center"
+          gridColumn="span 1"
         >
           <Paper
             sx={{
