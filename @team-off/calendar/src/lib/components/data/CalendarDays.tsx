@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material';
-import { range } from 'lodash';
 import { Fragment } from 'react';
-import { borderColor, days } from '../../constants';
+import { borderColor } from '../../constants';
+import { calendarDateRange } from '../../signals/calendar';
 
 export function CalendarDays() {
   return (
     <Fragment>
-      {range(days).map((index) => (
+      {calendarDateRange.value.map((date, index) => (
         <Box
           p={1}
           textAlign="center"
@@ -16,7 +16,7 @@ export function CalendarDays() {
           borderLeft={index > 0 ? 'none' : '1px solid'}
           borderColor={borderColor}
         >
-          <Typography fontWeight="medium">D{index}</Typography>
+          <Typography fontWeight="medium">{date.date()}</Typography>
         </Box>
       ))}
     </Fragment>
