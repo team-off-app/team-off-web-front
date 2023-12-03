@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { delay, http, HttpResponse } from 'msw';
 
 export const handlers = [
@@ -22,16 +23,16 @@ export const handlers = [
           {
             id: '196deb57-7e30-4603-b2ac-68904a23df42',
             title: null,
-            startDate: '2023-03-27T01:34:23',
-            endDate: '2023-03-28T01:34:23',
+            startDate: dayjs().startOf('day').subtract(5, 'day').toISOString(),
+            endDate: dayjs().startOf('day').toISOString(),
             notes: null,
             type: 'VACATION',
           },
           {
             id: 'd3ab5468-f5eb-438e-9d5c-c29af6f56ac3',
             title: null,
-            startDate: '2023-04-01T01:34:23',
-            endDate: '2023-04-03T01:34:23',
+            startDate: dayjs().startOf('day').add(1, 'day').toISOString(),
+            endDate: dayjs().startOf('day').add(2, 'day').toISOString(),
             notes: null,
             type: 'VACATION',
           },
@@ -55,16 +56,16 @@ export const handlers = [
           {
             id: '3cc49fbd-808c-46a9-9cb7-c1576e6f6ded',
             title: null,
-            startDate: '2023-03-29T01:34:23',
-            endDate: '2023-03-30T01:34:23',
+            startDate: dayjs().startOf('day').subtract(7, 'day').toISOString(),
+            endDate: dayjs().startOf('day').subtract(1, 'day').toISOString(),
             notes: null,
             type: 'VACATION',
           },
           {
             id: '1d68ab41-c142-41e0-8cb3-9cf81556b158',
             title: null,
-            startDate: '2023-04-03T01:34:23',
-            endDate: '2023-04-04T01:34:23',
+            startDate: dayjs().startOf('day').add(4, 'day').toISOString(),
+            endDate: dayjs().startOf('day').add(8, 'day').toISOString(),
             notes: null,
             type: 'VACATION',
           },
