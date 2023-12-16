@@ -7,6 +7,8 @@ import { TodayVerticalLine } from './TodayVerticalLine';
 import { ReadonlySignal, useComputed } from '@preact/signals-react';
 import { calendarDateRange } from '../../signals/calendar';
 
+import { motion } from 'framer-motion';
+
 type CalendarEvent = User['events'][number] & {
   calendarMetadata: {
     days: number;
@@ -55,6 +57,10 @@ export function CalendarEvent({
       zIndex={1}
       left={0}
       width={`${widthMultiplier * 100}%`}
+      sx={{ cursor: 'pointer' }}
+      component={motion.div}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 1 }}
     >
       <Paper sx={{ display: 'flex', zIndex: 1, flex: 1, m: 1 }}>
         <Box width="3px" bgcolor="tomato" />
