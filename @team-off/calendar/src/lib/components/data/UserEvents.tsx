@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, Tooltip, Typography } from '@mui/material';
 import { Fragment } from 'react';
 import { borderColor } from '../../constants';
 import { User } from '../../services/users/types';
@@ -34,7 +34,16 @@ function getCalendarEvent(
   return events.value
     .get(date.format('YYYY'))
     ?.get(date.format('MM'))
-    ?.get(date.format('DD'));
+    ?.get(date.format('DD'))?.[0];
+}
+
+function formatTooltip(event: CalendarEvent) {
+  return (
+    <Box>
+      <Box>Start: {dayjs(event.startDate).format('DD/MM/YYYY')}</Box>
+      <Box>End: {dayjs(event.endDate).format('DD/MM/YYYY')}</Box>
+    </Box>
+  );
 }
 
 export function CalendarEvent({
@@ -48,7 +57,7 @@ export function CalendarEvent({
 
   if (!calendarEvent) return null;
 
-  const days = calendarEvent?.[0].calendarMetadata.days as number;
+  const days = calendarEvent?.calendarMetadata.days as number;
   const widthMultiplier = days + 1;
 
   return (
@@ -62,10 +71,12 @@ export function CalendarEvent({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 1 }}
     >
-      <Paper sx={{ display: 'flex', zIndex: 1, flex: 1, m: 1 }}>
-        <Box width="3px" bgcolor="tomato" />
-        <Typography p={1}>{calendarEvent[0].type}</Typography>
-      </Paper>
+      <Tooltip title={formatTooltip(calendarEvent)} arrow>
+        <Paper sx={{ display: 'flex', zIndex: 1, flex: 1, m: 1 }}>
+          <Box width="3px" bgcolor="tomato" />
+          <Typography p={1}>{calendarEvent.type}</Typography>
+        </Paper>
+      </Tooltip>
     </Box>
   );
 }
