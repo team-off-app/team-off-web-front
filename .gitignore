@@ -49,3 +49,7 @@ Thumbs.db
 
 # msw.js
 mockServiceWorker.js
+
+# env
+.env.local
+.env
