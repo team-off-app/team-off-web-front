@@ -1,7 +1,19 @@
-import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { Calendar } from '@team-off/calendar';
+import { Add } from '@mui/icons-material';
+import {
+  CreateEventModal,
+  CreateEventOpenModalButton,
+} from '@team-off/create-event-modal';
 
 export function App() {
   return (
@@ -17,7 +29,10 @@ export function App() {
       >
         <Toolbar>
           <Container>
-            <Typography variant="h6">Team Off</Typography>
+            <Box display="flex">
+              <Typography variant="h6">Team Off</Typography>
+              <CreateEventOpenModalButton />
+            </Box>
           </Container>
         </Toolbar>
       </AppBar>
@@ -27,6 +42,8 @@ export function App() {
           <Calendar />
         </Box>
       </Container>
+
+      <CreateEventModal />
     </>
   );
 }

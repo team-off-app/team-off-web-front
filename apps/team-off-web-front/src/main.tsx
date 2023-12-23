@@ -7,8 +7,13 @@ import * as ReactDOM from 'react-dom/client';
 import { App } from './app/app';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { startFakebackend } from './mocks/browser';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const theme = createTheme({
+  components: {
+    MuiButton: { defaultProps: { disableElevation: true } },
+  },
   typography: {
     fontFamily: [
       '-apple-system',
@@ -34,9 +39,11 @@ startFakebackend().then(() =>
     <StrictMode>
       <CssBaseline />
 
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </LocalizationProvider>
     </StrictMode>
   )
 );
