@@ -3521,6 +3521,7 @@ __metadata:
     nx: "npm:16.10.0"
     prettier: "npm:^2.6.2"
     react: "npm:18.2.0"
+    react-async-hook: "npm:^4.0.0"
     react-dom: "npm:18.2.0"
     react-is: "npm:^18.2.0"
     styled-components: "npm:^5.3.1"
@@ -9921,6 +9922,15 @@ __metadata:
   version: 5.1.1
   resolution: "quick-lru@npm:5.1.1"
   checksum: a516faa25574be7947969883e6068dbe4aa19e8ef8e8e0fd96cddd6d36485e9106d85c0041a27153286b0770b381328f4072aa40d3b18a19f5f7d2b78b94b5ed
+  languageName: node
+  linkType: hard
+
+"react-async-hook@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "react-async-hook@npm:4.0.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 3f7cb29368011fc9a14cb8a248d289dea228ead3e7c53c34ff3c1540246a2f6e8fe6af2dded9cafe5253e09fea5d11d25d71684a09fb2000190897d51deb2818
   languageName: node
   linkType: hard
 

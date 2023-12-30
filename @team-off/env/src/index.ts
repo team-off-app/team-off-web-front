@@ -6,7 +6,7 @@ export const env = createEnv({
   clientPrefix: 'VITE_',
   client: {
     VITE_TOKEN: z.string().min(1),
-    VITE_BASE_URL: z.string().min(1),
+    VITE_API_BASE_URL: z.string().min(1).url(),
     VITE_MOCK_API: z
       .string()
       .refine((value) => value === 'true' || value === 'false'),

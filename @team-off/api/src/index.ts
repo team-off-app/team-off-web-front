@@ -2,8 +2,8 @@ import { env } from '@team-off/env';
 import axios from 'axios';
 
 export const client = axios.create({
-  baseURL: env.VITE_BASE_URL,
+  baseURL: env.VITE_API_BASE_URL,
   headers: {
-    Authorization: `Bearer ${env.VITE_TOKEN}`,
+    Authorization: env.VITE_TOKEN,
   },
 });

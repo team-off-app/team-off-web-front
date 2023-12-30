@@ -40,8 +40,7 @@ function Input() {
       onChange={(e) => {
         term.value = e.currentTarget.value;
 
-        axios.get('/users')
-          .then((res) => console.log(res.data))
+        axios.get('/users').then((res) => console.log(res.data));
       }}
       sx={{ ml: 1, flex: 1 }}
       placeholder="Search user"

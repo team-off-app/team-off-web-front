@@ -1,13 +1,25 @@
-import { Box, Paper, Tooltip, Typography } from '@mui/material';
-import { Fragment } from 'react';
+import {
+  Box,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Paper,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { ReadonlySignal, useComputed, useSignal } from '@preact/signals-react';
+import dayjs from 'dayjs';
+import { Fragment, useRef } from 'react';
 import { borderColor } from '../../constants';
 import { User } from '../../services/users/types';
-import dayjs from 'dayjs';
-import { TodayVerticalLine } from './TodayVerticalLine';
-import { ReadonlySignal, useComputed } from '@preact/signals-react';
 import { calendarDateRange } from '../../signals/calendar';
+import { TodayVerticalLine } from './TodayVerticalLine';
 
+import { Delete } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { client } from '@team-off/api';
+import { useAsync } from 'react-async-hook';
+import { usersRequestSignal } from '../../signals/users/index';
 
 type CalendarEvent = User['events'][number] & {
   calendarMetadata: {
@@ -53,12 +65,27 @@ export function CalendarEvent({
   events: ReadonlySignal<AllEvents>;
   date: dayjs.Dayjs;
 }) {
+  const open = useSignal(false);
+  const ref = useRef<HTMLButtonElement | null>(null);
   const calendarEvent = getCalendarEvent(date, events);
+
+  const deleteEventRequest = useAsync(
+    async () => {
+      if (!calendarEvent?.id) throw new Error('Missing event id');
+      await client.delete(`/event/${calendarEvent.id}`);
+    },
+    [],
+    { executeOnMount: false }
+  );
 
   if (!calendarEvent) return null;
 
   const days = calendarEvent?.calendarMetadata.days as number;
   const widthMultiplier = days + 1;
+
+  function closeMenu() {
+    open.value = false;
+  }
 
   return (
     <Box
@@ -66,17 +93,50 @@ export function CalendarEvent({
       zIndex={1}
       left={0}
       width={`${widthMultiplier * 100}%`}
-      sx={{ cursor: 'pointer' }}
-      component={motion.div}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 1 }}
+      display="flex"
     >
       <Tooltip title={formatTooltip(calendarEvent)} arrow>
-        <Paper sx={{ display: 'flex', zIndex: 1, flex: 1, m: 1 }}>
-          <Box width="3px" bgcolor="tomato" />
+        <Paper
+          component={motion.button}
+          ref={ref}
+          variant="outlined"
+          sx={{
+            cursor: 'pointer',
+            display: 'flex',
+            zIndex: 1,
+            flex: 1,
+            m: 1,
+            borderLeft: '3px solid',
+            borderLeftColor: 'tomato',
+          }}
+          onClick={() => (open.value = true)}
+        >
           <Typography p={1}>{calendarEvent.type}</Typography>
         </Paper>
       </Tooltip>
+
+      <Menu
+        anchorEl={ref.current}
+        open={open.value}
+        onClose={closeMenu}
+        slotProps={{ paper: { sx: { mt: 1 } } }}
+      >
+        <MenuItem
+          onClick={async () => {
+            await deleteEventRequest.execute();
+            await usersRequestSignal.value?.execute();
+            closeMenu();
+          }}
+        >
+          <ListItemIcon>
+            <Delete fontSize="small" />
+          </ListItemIcon>
+
+          <Typography variant="inherit" noWrap>
+            Remove event
+          </Typography>
+        </MenuItem>
+      </Menu>
     </Box>
   );
 }

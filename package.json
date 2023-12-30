@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "nx build",
-    "start": "nx serve",
-    "start:production": "NODE_ENV=production nx serve",
+    "start": "NODE_OPTIONS=--max-http-header-size=200000 nx serve",
     "test": "nx test"
   },
   "dependencies": {
@@ -23,6 +22,7 @@
     "framer-motion": "^10.16.12",
     "lodash": "^4.17.21",
     "react": "18.2.0",
+    "react-async-hook": "^4.0.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.1",
     "tslib": "^2.3.0",
