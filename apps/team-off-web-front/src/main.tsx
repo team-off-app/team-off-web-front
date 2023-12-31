@@ -14,25 +14,41 @@ import {
 import { startFakebackend } from './mocks/browser';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  Outlet,
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import { Login } from '@team-off/login';
 import { theme } from '@team-off/theme';
 import { Snackbar } from '@team-off/snackbar';
+import { getAccessToken } from '@team-off/auth';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const router = createBrowserRouter([
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/',
-    element: <App />,
-  },
-]);
+function ProtectedLayout() {
+  if (!getAccessToken()) {
+    return <Navigate to="/login" />;
+  }
+  return <Outlet />;
+}
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/" element={<ProtectedLayout />}>
+        <Route path="" element={<App />} />
+      </Route>
+    </>
+  )
+);
 
 startFakebackend().then(() =>
   root.render(
