@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/team-off"
+        "outputPath": "dist/"
       },
       "configurations": {
         "development": {
