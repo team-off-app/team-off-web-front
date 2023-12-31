@@ -1,15 +1,5 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  Toolbar,
-  Typography,
-} from '@mui/material';
-import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import { Calendar } from '@team-off/calendar';
-import { Add } from '@mui/icons-material';
 import {
   CreateEventModal,
   CreateEventOpenModalButton,

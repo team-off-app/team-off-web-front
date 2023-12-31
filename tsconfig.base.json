@@ -17,12 +17,15 @@
     "paths": {
       "@richardaum/msw-ui": ["@richardaum/msw-ui/src/index.ts"],
       "@team-off/api": ["@team-off/api/src/index.ts"],
+      "@team-off/auth": ["@team-off/auth/src/index.ts"],
       "@team-off/calendar": ["@team-off/calendar/src/index.ts"],
       "@team-off/create-event-modal": [
         "@team-off/create-event-modal/src/index.ts"
       ],
       "@team-off/env": ["@team-off/env/src/index.ts"],
       "@team-off/error-overlay": ["@team-off/error-overlay/src/index.ts"],
+      "@team-off/login": ["@team-off/login/src/index.ts"],
+      "@team-off/snackbar": ["@team-off/snackbar/src/index.ts"],
       "@team-off/theme": ["@team-off/theme/src/index.ts"]
     }
   },
