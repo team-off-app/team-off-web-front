@@ -1,6 +1,22 @@
 import { createTheme } from '@mui/material';
 import { indigo, red } from '@mui/material/colors';
 
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    white: true;
+  }
+}
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    white: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    white?: PaletteOptions['primary'];
+  }
+}
+
 export const theme = createTheme({
   components: {
     MuiButton: { defaultProps: { disableElevation: true } },
@@ -22,6 +38,7 @@ export const theme = createTheme({
   palette: {
     primary: indigo,
     secondary: red,
+    white: { main: '#fff' },
   },
 });
 

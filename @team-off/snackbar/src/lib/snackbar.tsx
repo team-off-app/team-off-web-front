@@ -1,16 +1,21 @@
-import { Alert, Snackbar as RawSnackbar } from '@mui/material';
+import { Alert, AlertProps, Snackbar as RawSnackbar } from '@mui/material';
 import { signal } from '@preact/signals-react';
 
 /* eslint-disable-next-line */
 export interface SnackbarProps {}
 
-const snackbarOpen = signal<{ open: boolean; message?: string }>({
+type SnackbarOptions = {
+  message: string;
+  type: AlertProps['severity'];
+};
+
+const snackbarOpen = signal<{ open: boolean } & Partial<SnackbarOptions>>({
   open: false,
   message: undefined,
 });
 
-export function openSnackbar(message: string) {
-  snackbarOpen.value = { open: true, message };
+export function openSnackbar(options: SnackbarOptions) {
+  snackbarOpen.value = { ...options, open: true };
 }
 
 export function closeSnackbar() {
@@ -25,7 +30,11 @@ export function Snackbar(props: SnackbarProps) {
       autoHideDuration={3000}
       onClose={closeSnackbar}
     >
-      <Alert onClose={closeSnackbar} severity="success" sx={{ width: '100%' }}>
+      <Alert
+        onClose={closeSnackbar}
+        severity={snackbarOpen.value.type}
+        sx={{ width: '100%' }}
+      >
         {snackbarOpen.value.message}
       </Alert>
     </RawSnackbar>
