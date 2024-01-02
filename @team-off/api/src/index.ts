@@ -4,7 +4,9 @@ import axios from 'axios';
 
 export const client = axios.create({
   baseURL: env.VITE_API_BASE_URL,
-  headers: {
-    Authorization: getAccessToken(),
-  },
+});
+
+client.interceptors.request.use((config) => {
+  config.headers.Authorization = getAccessToken();
+  return config;
 });

@@ -1,6 +1,6 @@
 import { client } from '@team-off/api';
-import { persistAccessToken } from '@team-off/auth';
-import { openSnackbar } from '@team-off/snackbar';
+import { persistAccessToken, resetAccessToken } from '@team-off/auth';
+import { closeSnackbar, openSnackbar } from '@team-off/snackbar';
 import { isAxiosError } from 'axios';
 import { useAsync } from 'react-async-hook';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,8 @@ export function LoginForm(props: LoginProps) {
 
   async function login() {
     try {
+      closeSnackbar();
+      resetAccessToken();
       const response = await loginRequest.execute();
       persistAccessToken(response.data.token);
       openSnackbar({ type: 'success', message: 'Welcome!' });
