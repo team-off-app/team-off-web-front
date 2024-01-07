@@ -1,4 +1,4 @@
-import { getAccessToken } from '@team-off/auth';
+import { getAccessToken, resetAccessToken } from '@team-off/auth';
 import { env } from '@team-off/env';
 import axios from 'axios';
 
@@ -10,3 +10,14 @@ client.interceptors.request.use((config) => {
   config.headers.Authorization = getAccessToken();
   return config;
 });
+
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 403) {
+      resetAccessToken();
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
