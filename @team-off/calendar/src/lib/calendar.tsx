@@ -8,10 +8,9 @@ import { SearchUsers } from './components/data/SearchUsers';
 import { UserData } from './components/data/UserData';
 import { UserEvents } from './components/data/UserEvents';
 import { CalendarGrid } from './components/view/CalendarGrid';
-import { users } from './services/users/signals';
-import { User } from './services/users/types';
+import { User } from './types';
 import { calendarDateRange } from './signals/calendar';
-import { usersRequestSignal } from './signals/users/index';
+import { usersRequestSignal } from './signals/users';
 
 /* eslint-disable-next-line */
 export interface CalendarProps {}
@@ -22,16 +21,12 @@ export function Calendar(props: CalendarProps) {
     const startDate = dateRange[0];
     const endDate = dateRange[dateRange.length - 1];
 
-    return client
-      .get<User[]>('/users/events', {
-        params: {
-          startDate: startDate.toISOString(),
-          endDate: endDate.toISOString(),
-        },
-      })
-      .then((response) => {
-        users.value = response.data;
-      });
+    return await client.get<User[]>('/users/events', {
+      params: {
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+      },
+    });
   }, []);
 
   useSignalEffect(() => {
@@ -43,7 +38,7 @@ export function Calendar(props: CalendarProps) {
       <SearchUsers />
       <CalendarMonths />
       <CalendarDays />
-      {users.value?.map((user, index) => (
+      {usersRequest.result?.data.map((user, index) => (
         <Fragment key={index}>
           <UserData user={user} />
           <UserEvents user={user} />
@@ -52,5 +47,3 @@ export function Calendar(props: CalendarProps) {
     </CalendarGrid>
   );
 }
-
-export default Calendar;
