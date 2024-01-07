@@ -21,3 +21,6 @@ client.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export * from './signals';
+export * from './types';

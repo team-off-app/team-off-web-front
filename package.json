@@ -9,7 +9,6 @@
     "test": "nx test"
   },
   "dependencies": {
-    "@fontsource/lato": "^5.0.18",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.15.2",
     "@mui/styled-engine-sc": "^6.0.0-alpha.10",

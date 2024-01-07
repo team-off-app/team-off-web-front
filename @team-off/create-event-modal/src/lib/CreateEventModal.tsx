@@ -11,13 +11,13 @@ import {
   FormControl,
   CircularProgress,
 } from '@mui/material';
-import { open } from '../signals/modal';
+import { createEventModalSignal } from '../signals/modal';
 import { useSignal } from '@preact/signals-react';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
 import { client } from '@team-off/api';
 import { useAsync } from 'react-async-hook';
-import { usersRequestSignal } from '@team-off/calendar';
+import { usersRequestSignal } from '@team-off/api';
 
 /* eslint-disable-next-line */
 export interface CreateEventModalProps {}
@@ -29,14 +29,13 @@ export function CreateEventModal(props: CreateEventModalProps) {
 
   const createEventRequest = useAsync(
     async () => {
+      const user = createEventModalSignal.value.user;
+      if (!user) throw new Error('User not found');
       await client.post('/event', {
         type: eventType.value,
-        // TODO hardcoded
-        userId: '68fede71-d80f-4688-bf33-6a45fdacf134',
+        userId: user.id,
         startDate: startDate.value?.startOf('day').toISOString(),
         endDate: endDate.value?.startOf('day').toISOString(),
-        title: 'Teste 1',
-        notes: '',
       });
     },
     [],
@@ -45,9 +44,9 @@ export function CreateEventModal(props: CreateEventModalProps) {
 
   return (
     <Dialog
-      open={open.value}
+      open={createEventModalSignal.value.open}
       onClose={() => {
-        open.value = false;
+        createEventModalSignal.value = { open: false };
       }}
     >
       <DialogTitle>Add event</DialogTitle>
@@ -87,7 +86,7 @@ export function CreateEventModal(props: CreateEventModalProps) {
       <DialogActions>
         <Button
           onClick={() => {
-            open.value = false;
+            createEventModalSignal.value = { open: false };
           }}
         >
           Cancel
@@ -100,7 +99,7 @@ export function CreateEventModal(props: CreateEventModalProps) {
           onClick={async () => {
             await createEventRequest.execute();
             await usersRequestSignal.value?.execute();
-            open.value = false;
+            createEventModalSignal.value = { open: false };
           }}
         >
           Create

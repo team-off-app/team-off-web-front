@@ -23,6 +23,7 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: [
+      'Lato',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',

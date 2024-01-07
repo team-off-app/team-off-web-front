@@ -11,15 +11,14 @@ import { ReadonlySignal, useComputed, useSignal } from '@preact/signals-react';
 import dayjs from 'dayjs';
 import { Fragment, useRef } from 'react';
 import { borderColor } from '../../constants';
-import { User } from '../../types';
+import { User } from '../../../../../api/src/types';
 import { calendarDateRange } from '../../signals/calendar';
 import { TodayVerticalLine } from './TodayVerticalLine';
 
 import { Delete } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import { client } from '@team-off/api';
+import { client, usersRequestSignal } from '@team-off/api';
 import { useAsync } from 'react-async-hook';
-import { usersRequestSignal } from '../../signals/users/index';
 
 type CalendarEvent = User['events'][number] & {
   calendarMetadata: {

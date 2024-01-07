@@ -2,10 +2,11 @@ import { Add } from '@mui/icons-material';
 import { Avatar, Box, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { computed } from '@preact/signals-react';
+import { User } from '@team-off/api';
+import { openCreateEventModal } from '@team-off/create-event-modal';
 import { borderColor } from '../../constants';
-import { User } from '../../types';
 
-const useDisplayAddButtonOnHover = makeStyles((theme) => ({
+const useDisplayAddButtonOnHover = makeStyles(() => ({
   hoverContainer: {
     '&:hover': {
       '& $addButton': {
@@ -45,6 +46,7 @@ export function UserData({ user }: { user: User }) {
           sx={{ ml: 'auto', minWidth: 0 }}
           size="small"
           variant="outlined"
+          onClick={() => openCreateEventModal(user)}
         >
           <Add />
         </Button>

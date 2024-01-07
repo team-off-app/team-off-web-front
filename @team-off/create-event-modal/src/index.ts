@@ -1,2 +1,2 @@
 export * from './lib/CreateEventModal';
-export * from './lib/OpenModal';
+export * from './handlers';

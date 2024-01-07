@@ -1,5 +1,5 @@
 import { useSignalEffect } from '@preact/signals-react';
-import { client } from '@team-off/api';
+import { User, client, usersRequestSignal } from '@team-off/api';
 import { Fragment } from 'react';
 import { useAsync } from 'react-async-hook';
 import { CalendarDays } from './components/data/CalendarDays';
@@ -8,9 +8,7 @@ import { SearchUsers } from './components/data/SearchUsers';
 import { UserData } from './components/data/UserData';
 import { UserEvents } from './components/data/UserEvents';
 import { CalendarGrid } from './components/view/CalendarGrid';
-import { User } from './types';
 import { calendarDateRange } from './signals/calendar';
-import { usersRequestSignal } from './signals/users';
 
 /* eslint-disable-next-line */
 export interface CalendarProps {}
