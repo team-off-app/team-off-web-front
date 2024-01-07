@@ -53,6 +53,7 @@ export function LoginFormView(props: LoginFormViewProps) {
           color="white"
           disabled={props.isLoadingLoginBtn}
           onClick={props.onLoginBtnClick}
+          type="submit"
         >
           {props.isLoadingLoginBtn && (
             <CircularProgress size={24} sx={{ mr: 1 }} />
