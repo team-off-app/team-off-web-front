@@ -1,27 +1,12 @@
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import { Calendar } from '@team-off/calendar';
 import { CreateEventModal } from '@team-off/create-event-modal';
+import { Topbar } from '@team-off/topbar';
 
 export function App() {
   return (
     <>
-      <AppBar
-        position="static"
-        color="transparent"
-        sx={{
-          boxShadow: 'none',
-          borderBottom: '1px solid',
-          borderColor: 'grey.300',
-        }}
-      >
-        <Toolbar>
-          <Container>
-            <Box display="flex">
-              <Typography variant="h6">Team Off</Typography>
-            </Box>
-          </Container>
-        </Toolbar>
-      </AppBar>
+      <Topbar />
 
       <Container>
         <Box py={3}>

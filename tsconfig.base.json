@@ -26,7 +26,8 @@
       "@team-off/error-overlay": ["@team-off/error-overlay/src/index.ts"],
       "@team-off/login": ["@team-off/login/src/index.ts"],
       "@team-off/snackbar": ["@team-off/snackbar/src/index.ts"],
-      "@team-off/theme": ["@team-off/theme/src/index.ts"]
+      "@team-off/theme": ["@team-off/theme/src/index.ts"],
+      "@team-off/topbar": ["@team-off/topbar/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

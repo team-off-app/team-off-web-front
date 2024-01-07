@@ -3,6 +3,9 @@ import { delay, http, HttpResponse } from 'msw';
 import { v4 } from 'uuid';
 
 export const handlers = [
+  http.post('/api/login', async () => {
+    return HttpResponse.json({});
+  }),
   http.get('/api/users/events', async () => {
     await delay();
     return HttpResponse.json([
