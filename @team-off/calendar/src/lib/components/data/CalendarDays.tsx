@@ -31,13 +31,17 @@ export function CalendarDays() {
               alignItems="center"
               justifyContent="center"
               bgcolor={isToday ? indigo[500] : 'transparent'}
-              color={isToday ? 'white' : 'inherit'}
               borderRadius="50%"
               p={2}
               height="24px"
               width="24px"
             >
-              <Typography fontWeight="medium">{date.date()}</Typography>
+              <Typography
+                fontWeight="medium"
+                color={isToday ? 'white.main' : 'inherit'}
+              >
+                {date.date()}
+              </Typography>
             </Box>
 
             {isToday && <TodayVerticalLine />}

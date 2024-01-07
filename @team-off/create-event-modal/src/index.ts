@@ -1,2 +1,2 @@
-export * from './lib/create-event-modal';
-export * from './lib/open-button';
+export * from './lib/CreateEventModal';
+export * from './lib/OpenModal';

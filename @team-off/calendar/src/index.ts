@@ -1,3 +1,3 @@
-export * from './lib/calendar';
+export * from './lib/Calendar';
 export * from './lib/signals';
 export * from './lib/types';

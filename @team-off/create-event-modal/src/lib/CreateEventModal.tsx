@@ -17,6 +17,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
 import { client } from '@team-off/api';
 import { useAsync } from 'react-async-hook';
+import { usersRequestSignal } from '@team-off/calendar';
 
 /* eslint-disable-next-line */
 export interface CreateEventModalProps {}
@@ -53,7 +54,6 @@ export function CreateEventModal(props: CreateEventModalProps) {
 
       <DialogContent>
         <Box display="flex" flexDirection="column" gap={2} py={1}>
-          {startDate.value?.format('DD/MM/YYYY')}
           <DatePicker
             label="Start date"
             format="DD/MM/YYYY"
@@ -99,6 +99,7 @@ export function CreateEventModal(props: CreateEventModalProps) {
           disabled={createEventRequest.loading}
           onClick={async () => {
             await createEventRequest.execute();
+            await usersRequestSignal.value?.execute();
             open.value = false;
           }}
         >
