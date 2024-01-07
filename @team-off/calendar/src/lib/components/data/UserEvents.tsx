@@ -52,8 +52,12 @@ function getCalendarEvent(
 function formatTooltip(event: CalendarEvent) {
   return (
     <Box>
-      <Box>Start: {dayjs(event.startDate).format('DD/MM/YYYY')}</Box>
-      <Box>End: {dayjs(event.endDate).format('DD/MM/YYYY')}</Box>
+      <Typography variant="caption" display="block">
+        Start: {dayjs(event.startDate).format('DD/MM/YYYY')}
+      </Typography>
+      <Typography variant="caption" display="block">
+        End: {dayjs(event.endDate).format('DD/MM/YYYY')}
+      </Typography>
     </Box>
   );
 }

@@ -9,9 +9,11 @@
     "test": "nx test"
   },
   "dependencies": {
+    "@fontsource/lato": "^5.0.18",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.15.2",
     "@mui/styled-engine-sc": "^6.0.0-alpha.10",
+    "@mui/styles": "^5.15.3",
     "@mui/x-date-pickers": "^6.18.5",
     "@preact/signals-react": "^1.3.6",
     "@swc/helpers": "~0.5.2",

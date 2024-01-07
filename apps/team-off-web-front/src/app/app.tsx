@@ -1,9 +1,6 @@
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import { Calendar } from '@team-off/calendar';
-import {
-  CreateEventModal,
-  CreateEventOpenModalButton,
-} from '@team-off/create-event-modal';
+import { CreateEventModal } from '@team-off/create-event-modal';
 
 export function App() {
   return (
@@ -21,7 +18,6 @@ export function App() {
           <Container>
             <Box display="flex">
               <Typography variant="h6">Team Off</Typography>
-              <CreateEventOpenModalButton />
             </Box>
           </Container>
         </Toolbar>

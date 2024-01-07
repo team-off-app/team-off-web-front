@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material';
 import { indigo, red } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {

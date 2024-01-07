@@ -4,12 +4,12 @@ import {
   CircularProgress,
   FormControl,
   TextField,
-  ThemeProvider,
   styled,
 } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@team-off/theme';
-import { mode } from './modeSignal';
 import { email, password } from './loginFormSignal';
+import { mode } from './modeSignal';
 
 const Form = styled('form')(() => ({}));
 

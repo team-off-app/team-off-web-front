@@ -1,13 +1,29 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { Avatar, Box, Button, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { computed } from '@preact/signals-react';
-import { bgColor, borderColor } from '../../constants';
+import { borderColor } from '../../constants';
 import { User } from '../../types';
 
+const useDisplayAddButtonOnHover = makeStyles((theme) => ({
+  hoverContainer: {
+    '&:hover': {
+      '& $addButton': {
+        visibility: 'visible',
+      },
+    },
+  },
+  addButton: {
+    visibility: 'hidden',
+  },
+}));
+
 export function UserData({ user }: { user: User }) {
+  const classes = useDisplayAddButtonOnHover();
   const teams = computed(() => user.teams?.map((team) => team.name).join(', '));
 
   return (
-    <Box bgcolor={bgColor} mr={2}>
+    <Box mr={2} className={classes.hoverContainer}>
       <Box
         display="flex"
         alignItems="center"
@@ -24,6 +40,14 @@ export function UserData({ user }: { user: User }) {
             {teams.value}
           </Typography>
         </Box>
+        <Button
+          className={classes.addButton}
+          sx={{ ml: 'auto', minWidth: 0 }}
+          size="small"
+          variant="outlined"
+        >
+          <Add />
+        </Button>
       </Box>
     </Box>
   );

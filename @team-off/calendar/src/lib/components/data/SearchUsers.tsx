@@ -1,8 +1,8 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputBase, Paper } from '@mui/material';
-import { bgColor, borderColor, searchBoxSpan } from '../../constants';
 import { signal } from '@preact/signals-react';
 import axios from 'axios';
+import { borderColor, searchBoxSpan } from '../../constants';
 
 const term = signal('');
 
@@ -12,7 +12,6 @@ export function SearchUsers() {
       p={2}
       textAlign="center"
       sx={{ borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
-      bgcolor={bgColor}
       gridRow={`span ${searchBoxSpan}`}
       mr={2}
       borderBottom="1px solid"

@@ -1,19 +1,17 @@
-import './mocks/browser';
 import '@team-off/error-overlay';
+import './mocks/browser';
 
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import { App } from './app/app';
-import {
-  CssBaseline,
-  ThemeProvider,
-  createTheme,
-  GlobalStyles,
-} from '@mui/material';
-import { startFakebackend } from './mocks/browser';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, GlobalStyles } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { getAccessToken } from '@team-off/auth';
+import { Login } from '@team-off/login';
+import { Snackbar } from '@team-off/snackbar';
+import { theme } from '@team-off/theme';
 import {
   Navigate,
   Outlet,
@@ -22,10 +20,8 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import { Login } from '@team-off/login';
-import { theme } from '@team-off/theme';
-import { Snackbar } from '@team-off/snackbar';
-import { getAccessToken } from '@team-off/auth';
+import { App } from './app/app';
+import { startFakebackend } from './mocks/browser';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

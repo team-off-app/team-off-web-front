@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Fragment } from 'react';
 import { borderColor } from '../../constants';
 import { monthsInCalendarDateRange } from '../../signals/calendar';
@@ -17,7 +17,7 @@ export function CalendarMonths() {
           borderTop="none"
           borderColor={borderColor}
         >
-          {month.name}
+          <Typography>{month.name}</Typography>
         </Box>
       ))}
     </Fragment>
