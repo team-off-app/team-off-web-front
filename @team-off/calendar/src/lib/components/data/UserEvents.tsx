@@ -11,7 +11,7 @@ import { ReadonlySignal, useComputed, useSignal } from '@preact/signals-react';
 import dayjs from 'dayjs';
 import { Fragment, useRef } from 'react';
 import { borderColor } from '../../constants';
-import { User } from '../../services/users/types';
+import { User } from '../../types';
 import { calendarDateRange } from '../../signals/calendar';
 import { TodayVerticalLine } from './TodayVerticalLine';
 

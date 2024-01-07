@@ -1,7 +1,7 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import { computed } from '@preact/signals-react';
 import { bgColor, borderColor } from '../../constants';
-import { User } from '../../services/users/types';
+import { User } from '../../types';
 
 export function UserData({ user }: { user: User }) {
   const teams = computed(() => user.teams?.map((team) => team.name).join(', '));
