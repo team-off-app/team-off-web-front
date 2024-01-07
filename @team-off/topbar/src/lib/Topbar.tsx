@@ -42,7 +42,7 @@ export function Topbar(props: TopbarProps) {
     >
       <Toolbar>
         <Container>
-          <Box display="flex">
+          <Box display="flex" alignItems="center">
             <Typography variant="h6">Team Off</Typography>
             <Box ml="auto">
               <IconButton

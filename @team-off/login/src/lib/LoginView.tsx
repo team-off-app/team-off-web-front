@@ -2,16 +2,14 @@ import {
   Container,
   GlobalStyles,
   Paper,
+  Theme,
   Typography,
   useTheme,
 } from '@mui/material';
-import { signal, useSignalEffect } from '@preact/signals-react';
 import { motion } from 'framer-motion';
 import { LoginForm } from './LoginForm';
 import { SignUpFormView } from './SignUpFormView';
-import { mode } from './modeSignal';
-
-const canRender = signal(false);
+import { mode, animationState } from './modeSignal';
 
 export function LoginView() {
   const theme = useTheme();
@@ -33,23 +31,48 @@ export function LoginView() {
   );
 }
 
+const motionLocalSettings = () => ({
+  transition: { delay: animationState.value === 'initial' ? 1 : 0 },
+});
+
+const motionSettings = {
+  left: () => ({
+    ...motionLocalSettings(),
+    initial: {
+      x: -1000,
+      opacity: animationState.value === 'initial' ? 0 : 1,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+      width: mode.value === 'login' ? '40%' : '60%',
+    },
+  }),
+  right: (theme: Theme) => ({
+    ...motionLocalSettings(),
+    initial: {
+      x: 1000,
+      opacity: animationState.value === 'initial' ? 0 : 1,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+      background:
+        mode.value === 'signup'
+          ? theme.palette.primary.dark
+          : theme.palette.white.main,
+    },
+  }),
+};
+
 function LoginViewInnerContent() {
   const theme = useTheme();
-
-  useSignalEffect(() => {
-    setTimeout(() => {
-      canRender.value = true;
-    }, 1000);
-  });
-
-  if (!canRender.value) return null;
 
   return (
     <Container component="main" sx={{ height: '600px', p: 4, display: 'flex' }}>
       <Paper
+        {...motionSettings.left()}
         component={motion.article}
-        initial={{ x: -1000 }}
-        animate={{ x: 0, width: mode.value === 'login' ? '40%' : '60%' }}
         elevation={20}
         sx={{
           background: (theme) =>
@@ -67,6 +90,7 @@ function LoginViewInnerContent() {
       </Paper>
 
       <Paper
+        {...motionSettings.right(theme)}
         component={motion.article}
         elevation={20}
         sx={{
@@ -76,14 +100,6 @@ function LoginViewInnerContent() {
           borderBottomRightRadius: 10,
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
-        }}
-        initial={{ x: 1000 }}
-        animate={{
-          x: 0,
-          background:
-            mode.value === 'signup'
-              ? theme.palette.primary.dark
-              : theme.palette.white.main,
         }}
       >
         {mode.value === 'signup' ? <SignUpFormView /> : <SideContent />}
