@@ -11,13 +11,12 @@ import { ReadonlySignal, useComputed, useSignal } from '@preact/signals-react';
 import dayjs from 'dayjs';
 import { Fragment, useRef } from 'react';
 import { borderColor } from '../../constants';
-import { User } from '../../../../../api/src/types';
 import { calendarDateRange } from '../../signals/calendar';
 import { TodayVerticalLine } from './TodayVerticalLine';
 
 import { Delete } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import { client, usersRequestSignal } from '@team-off/api';
+import { User, client, usersRequestSignal } from '@team-off/api';
 import { useAsync } from 'react-async-hook';
 
 type CalendarEvent = User['events'][number] & {
@@ -68,7 +67,8 @@ export function CalendarEvent({
   events: ReadonlySignal<AllEvents>;
   date: dayjs.Dayjs;
 }) {
-  const open = useSignal(false);
+  const selectedEvent =
+    useSignal<Readonly<CalendarEvent | undefined>>(undefined);
   const ref = useRef<HTMLButtonElement | null>(null);
   const calendarEvent = getCalendarEvent(date, events);
 
@@ -87,13 +87,15 @@ export function CalendarEvent({
   const widthMultiplier = days + 1;
 
   function closeMenu() {
-    open.value = false;
+    selectedEvent.value = undefined;
   }
 
   return (
     <Box
       position="absolute"
-      zIndex={1}
+      zIndex={(theme) =>
+        selectedEvent.value === calendarEvent ? theme.zIndex.modal + 1 : 1
+      }
       left={0}
       width={`${widthMultiplier * 100}%`}
       display="flex"
@@ -112,7 +114,7 @@ export function CalendarEvent({
             borderLeft: '3px solid',
             borderLeftColor: 'tomato',
           }}
-          onClick={() => (open.value = true)}
+          onClick={() => (selectedEvent.value = calendarEvent)}
         >
           <Typography p={1}>{calendarEvent.type}</Typography>
         </Paper>
@@ -120,9 +122,12 @@ export function CalendarEvent({
 
       <Menu
         anchorEl={ref.current}
-        open={open.value}
+        open={Boolean(selectedEvent.value)}
         onClose={closeMenu}
-        slotProps={{ paper: { sx: { mt: 1 } } }}
+        slotProps={{
+          paper: { sx: { mt: 1 } },
+          root: { sx: { backgroundColor: 'rgba(0,0,0,0.5)' } },
+        }}
       >
         <MenuItem
           onClick={async () => {
