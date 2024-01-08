@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { indigo } from '@mui/material/colors';
 import dayjs from 'dayjs';
 import { Fragment } from 'react';
+
 import { borderColor } from '../../constants';
 import { calendarDateRange } from '../../signals/calendar';
 import { TodayVerticalLine } from './TodayVerticalLine';

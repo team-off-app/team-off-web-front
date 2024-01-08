@@ -1,6 +1,7 @@
-import { setupWorker } from 'msw/browser';
-import { handlers } from './handlers';
 import { env } from '@team-off/env';
+import { setupWorker } from 'msw/browser';
+
+import { handlers } from './handlers';
 
 export const worker = setupWorker(...handlers);
 

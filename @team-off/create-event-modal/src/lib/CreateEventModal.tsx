@@ -1,23 +1,23 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   InputLabel,
   MenuItem,
   Select,
-  FormControl,
-  CircularProgress,
 } from '@mui/material';
-import { createEventModalSignal } from '../signals/modal';
-import { useSignal } from '@preact/signals-react';
 import { DatePicker } from '@mui/x-date-pickers';
+import { useSignal } from '@preact/signals-react';
+import { client , usersRequestSignal } from '@team-off/api';
 import dayjs, { Dayjs } from 'dayjs';
-import { client } from '@team-off/api';
 import { useAsync } from 'react-async-hook';
-import { usersRequestSignal } from '@team-off/api';
+
+import { createEventModalSignal } from '../signals/modal';
 
 /* eslint-disable-next-line */
 export interface CreateEventModalProps {}

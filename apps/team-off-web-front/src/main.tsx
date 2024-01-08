@@ -1,25 +1,24 @@
 import '@team-off/error-overlay';
-import './mocks/browser';
 
-import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom/client';
-
-import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, GlobalStyles } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { getAccessToken } from '@team-off/auth';
 import { Login } from '@team-off/login';
 import { Snackbar } from '@team-off/snackbar';
 import { theme } from '@team-off/theme';
+import { StrictMode } from 'react';
+import * as ReactDOM from 'react-dom/client';
 import {
+  createBrowserRouter,
+  createRoutesFromElements,
   Navigate,
   Outlet,
   Route,
   RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
 } from 'react-router-dom';
+
 import { App } from './app/app';
 import { startFakebackend } from './mocks/browser';
 

@@ -2,6 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputBase, Paper } from '@mui/material';
 import { signal } from '@preact/signals-react';
 import axios from 'axios';
+
 import { borderColor, searchBoxSpan } from '../../constants';
 
 const term = signal('');
@@ -9,7 +10,7 @@ const term = signal('');
 export function SearchUsers() {
   return (
     <Box
-      p={2}
+      py={2}
       textAlign="center"
       sx={{ borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
       gridRow={`span ${searchBoxSpan}`}

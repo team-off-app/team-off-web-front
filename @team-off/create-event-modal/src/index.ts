@@ -1,2 +1,2 @@
-export * from './lib/CreateEventModal';
 export * from './handlers';
+export * from './lib/CreateEventModal';

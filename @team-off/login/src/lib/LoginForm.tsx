@@ -4,8 +4,9 @@ import { closeSnackbar, openSnackbar } from '@team-off/snackbar';
 import { isAxiosError } from 'axios';
 import { useAsync } from 'react-async-hook';
 import { useNavigate } from 'react-router-dom';
-import { LoginFormView } from './LoginFormView';
+
 import { email, password } from './loginFormSignal';
+import { LoginFormView } from './LoginFormView';
 
 /* eslint-disable-next-line */
 export interface LoginProps {}

@@ -1,8 +1,9 @@
-import { Box, Button, FormControl, TextField, styled } from '@mui/material';
+import { Box, Button, FormControl, styled,TextField } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { signal } from '@preact/signals-react';
 import { darkTheme } from '@team-off/theme';
+
 import { mode } from './modeSignal';
-import { ThemeProvider } from '@mui/material/styles';
 
 const Form = styled('form')(() => ({}));
 

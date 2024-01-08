@@ -1,11 +1,9 @@
-import { Delete } from '@mui/icons-material';
 import {
   AppBar,
   Avatar,
   Box,
   Container,
   IconButton,
-  ListItemIcon,
   Menu,
   MenuItem,
   Toolbar,

@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { ReactNode } from 'react';
+
 import { days } from '../../constants';
 
 export function CalendarGrid({ children }: { children: ReactNode }) {

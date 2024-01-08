@@ -7,9 +7,10 @@ import {
   useTheme,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+
 import { LoginForm } from './LoginForm';
+import { animationState,mode } from './modeSignal';
 import { SignUpFormView } from './SignUpFormView';
-import { mode, animationState } from './modeSignal';
 
 export function LoginView() {
   const theme = useTheme();

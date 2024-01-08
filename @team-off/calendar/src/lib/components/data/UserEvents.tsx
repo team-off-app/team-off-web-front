@@ -1,3 +1,4 @@
+import { Delete } from '@mui/icons-material';
 import {
   Box,
   ListItemIcon,
@@ -8,16 +9,15 @@ import {
   Typography,
 } from '@mui/material';
 import { ReadonlySignal, useComputed, useSignal } from '@preact/signals-react';
+import { client, User, usersRequestSignal } from '@team-off/api';
 import dayjs from 'dayjs';
+import { motion } from 'framer-motion';
 import { Fragment, useRef } from 'react';
+import { useAsync } from 'react-async-hook';
+
 import { borderColor } from '../../constants';
 import { calendarDateRange } from '../../signals/calendar';
 import { TodayVerticalLine } from './TodayVerticalLine';
-
-import { Delete } from '@mui/icons-material';
-import { motion } from 'framer-motion';
-import { User, client, usersRequestSignal } from '@team-off/api';
-import { useAsync } from 'react-async-hook';
 
 type CalendarEvent = User['events'][number] & {
   calendarMetadata: {

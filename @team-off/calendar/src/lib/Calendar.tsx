@@ -1,7 +1,8 @@
 import { useSignalEffect } from '@preact/signals-react';
-import { User, client, usersRequestSignal } from '@team-off/api';
+import { client, User, usersRequestSignal } from '@team-off/api';
 import { Fragment } from 'react';
 import { useAsync } from 'react-async-hook';
+
 import { CalendarDays } from './components/data/CalendarDays';
 import { CalendarMonths } from './components/data/CalendarMonths';
 import { SearchUsers } from './components/data/SearchUsers';

@@ -10,5 +10,5 @@
       "rules": {}
     }
   ],
-  "extends": ["plugin:@nx/react", "./.eslintrc.base.json"]
+  "extends": ["plugin:@nx/react", "../../.eslintrc.base.json"]
 }

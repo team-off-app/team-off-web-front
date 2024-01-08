@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { computed } from '@preact/signals-react';
 import { User } from '@team-off/api';
 import { openCreateEventModal } from '@team-off/create-event-modal';
+
 import { borderColor } from '../../constants';
 
 const useDisplayAddButtonOnHover = makeStyles(() => ({
