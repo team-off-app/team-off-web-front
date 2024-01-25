@@ -16,12 +16,12 @@ export function LoginForm(props: LoginProps) {
 
   const loginRequest = useAsync(
     async () =>
-      client.post<{ token: string }>('/login', {
+      client.post<{ token: string }>('/auth/login', {
         login: email.value,
         password: password.value,
       }),
     [],
-    { executeOnMount: false }
+    { executeOnMount: false },
   );
 
   async function login() {
@@ -33,19 +33,28 @@ export function LoginForm(props: LoginProps) {
       openSnackbar({ type: 'success', message: 'Welcome!' });
       navigate('/');
     } catch (e) {
-      if (isAxiosError(e) && e.response?.status === 403) {
-        openSnackbar({
+      const message = e instanceof Error && e.message;
+
+      if (isAxiosError(e)) {
+        if (e.response?.status === 403) {
+          return openSnackbar({
+            type: 'error',
+            message: 'Invalid credentials',
+          });
+        }
+
+        return openSnackbar({
           type: 'error',
-          message: 'Invalid credentials',
-        });
-      } else {
-        openSnackbar({
-          type: 'error',
-          message: ['Something went wrong.', e instanceof Error && e.message]
+          message: ['Something went wrong.', e.response?.data?.error ?? message]
             .filter(Boolean)
             .join(' '),
         });
       }
+
+      openSnackbar({
+        type: 'error',
+        message: ['Something went wrong.', message].filter(Boolean).join(' '),
+      });
     }
   }
 

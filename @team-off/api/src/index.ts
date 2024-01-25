@@ -14,12 +14,15 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 403) {
+    if (
+      error.response.status === 403 &&
+      window.location.pathname !== '/login'
+    ) {
       resetAccessToken();
       window.location.href = '/login';
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export * from './signals';
