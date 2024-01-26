@@ -67,7 +67,7 @@ export function UserData({ user }: { user: User }) {
         >
           <CreateEventMenuItem user={user} />
           <JoinTeamMenuItem user={user} />
-          <LeaveTeamMenuItem />
+          <LeaveTeamMenuItem user={user} />
           <DeleteUserMenuItem />
         </Menu>
       </Box>
