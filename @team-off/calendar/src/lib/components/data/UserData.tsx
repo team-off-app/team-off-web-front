@@ -35,7 +35,7 @@ export function UserData({ user }: { user: User }) {
         mx={2}
         py={2}
       >
-        <Avatar>H</Avatar>
+        <Avatar>{user.name.toUpperCase().charAt(0)}</Avatar>
         <Box display="block">
           <Typography variant="body1">{user.name}</Typography>
           <Typography variant="body2" color="text.secondary">
