@@ -22,6 +22,9 @@
       "@team-off/create-event-modal": [
         "@team-off/create-event-modal/src/index.ts"
       ],
+      "@team-off/delete-user-modal": [
+        "@team-off/delete-user-modal/src/index.ts"
+      ],
       "@team-off/env": ["@team-off/env/src/index.ts"],
       "@team-off/error-overlay": ["@team-off/error-overlay/src/index.ts"],
       "@team-off/join-team-modal": ["@team-off/join-team-modal/src/index.ts"],

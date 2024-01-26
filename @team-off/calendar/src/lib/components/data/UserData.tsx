@@ -5,7 +5,6 @@ import { useRef } from 'react';
 
 import { borderColor } from '../../constants';
 import { CreateEventMenuItem } from './CreateEventMenuItem';
-import { DeleteUserMenuItem } from './DeleteUserMenuItem';
 import { JoinTeamMenuItem } from './JoinTeamMenuItem';
 import { LeaveTeamMenuItem } from './LeaveTeamMenuItem';
 import classes from './UserData.module.css';
@@ -68,7 +67,6 @@ export function UserData({ user }: { user: User }) {
           <CreateEventMenuItem user={user} />
           <JoinTeamMenuItem user={user} />
           <LeaveTeamMenuItem user={user} />
-          <DeleteUserMenuItem />
         </Menu>
       </Box>
     </Box>
