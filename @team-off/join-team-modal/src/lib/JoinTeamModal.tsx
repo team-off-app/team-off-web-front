@@ -60,6 +60,10 @@ export function JoinTeamModal(props: JoinTeamModalProps) {
 
       <DialogContent>
         <Box display="flex" flexDirection="column" gap={2} py={1}>
+          {teamsRequest.loading && (
+            <CircularProgress sx={{ width: '100%', margin: 'auto' }} />
+          )}
+
           <FormControl>
             <RadioGroup
               value={selectedTeam.value}
