@@ -60,23 +60,21 @@ export function JoinTeamModal(props: JoinTeamModalProps) {
 
       <DialogContent>
         <Box display="flex" flexDirection="column" gap={2} py={1}>
-          {teamsRequest.result && (
-            <FormControl>
-              <RadioGroup
-                value={selectedTeam.value}
-                onChange={(e) => (selectedTeam.value = e.target.value)}
-              >
-                {teamsRequest.result.map((team) => (
-                  <FormControlLabel
-                    key={team.id}
-                    value={team.id}
-                    control={<Radio />}
-                    label={team.name}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-          )}
+          <FormControl>
+            <RadioGroup
+              value={selectedTeam.value}
+              onChange={(e) => (selectedTeam.value = e.target.value)}
+            >
+              {teamsRequest.result?.map((team) => (
+                <FormControlLabel
+                  key={team.id}
+                  value={team.id}
+                  control={<Radio />}
+                  label={team.name}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
         </Box>
       </DialogContent>
 
