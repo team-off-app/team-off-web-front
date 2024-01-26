@@ -39,7 +39,7 @@ function getOrCreate<K, V>(map: Map<K, V>, key: K, defaultValue: V): V {
 
 function getCalendarEvent(
   date: dayjs.Dayjs,
-  events: ReadonlySignal<AllEvents>
+  events: ReadonlySignal<AllEvents>,
 ) {
   return events.value
     .get(date.format('YYYY'))
@@ -78,7 +78,7 @@ export function CalendarEvent({
       await client.delete(`/event/${calendarEvent.id}`);
     },
     [],
-    { executeOnMount: false }
+    { executeOnMount: false },
   );
 
   if (!calendarEvent) return null;

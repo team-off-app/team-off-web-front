@@ -1,5 +1,7 @@
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { useSignalEffect } from '@preact/signals-react';
 import { client, User, usersRequestSignal } from '@team-off/api';
+import { ALL_USERS_TAB, tab, TeamsTabs } from '@team-off/teams-tabs';
 import { Fragment } from 'react';
 import { useAsync } from 'react-async-hook';
 
@@ -20,29 +22,53 @@ export function Calendar(props: CalendarProps) {
     const startDate = dateRange[0];
     const endDate = dateRange[dateRange.length - 1];
 
-    return await client.get<User[]>('/users/events', {
+    const url = getUrl();
+    if (!url) return;
+
+    return await client.get<User[]>(url, {
       params: {
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
       },
     });
-  }, []);
+
+    function getUrl() {
+      if (tab.value.index === ALL_USERS_TAB) return '/users/events';
+      if (tab.value.team?.id) return `/team/${tab.value.team.id}/users`;
+    }
+  }, [tab.value.index]);
 
   useSignalEffect(() => {
     usersRequestSignal.value = usersRequest;
   });
 
+  const isEmpty = usersRequest.result && usersRequest.result.data.length === 0;
+
   return (
-    <CalendarGrid>
-      <SearchUsers />
-      <CalendarMonths />
-      <CalendarDays />
-      {usersRequest.result?.data.map((user, index) => (
-        <Fragment key={index}>
-          <UserData user={user} />
-          <UserEvents user={user} />
-        </Fragment>
-      ))}
-    </CalendarGrid>
+    <Box>
+      <TeamsTabs />
+
+      <Box display="flex" mt={4}>
+        {usersRequest.loading && <CircularProgress sx={{ margin: 'auto' }} />}
+
+        {usersRequest.status === 'success' && isEmpty && (
+          <Typography margin="auto">No users found</Typography>
+        )}
+      </Box>
+
+      {usersRequest.status === 'success' && !isEmpty && (
+        <CalendarGrid>
+          <SearchUsers />
+          <CalendarMonths />
+          <CalendarDays />
+          {usersRequest.result?.data.map((user, index) => (
+            <Fragment key={index}>
+              <UserData user={user} />
+              <UserEvents user={user} />
+            </Fragment>
+          ))}
+        </CalendarGrid>
+      )}
+    </Box>
   );
 }

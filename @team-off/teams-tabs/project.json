@@ -1,0 +1,16 @@
+{
+  "name": "@team-off/teams-tabs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "@team-off/teams-tabs/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["@team-off/teams-tabs/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

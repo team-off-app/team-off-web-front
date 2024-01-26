@@ -31,6 +31,7 @@
       "@team-off/leave-team-modal": ["@team-off/leave-team-modal/src/index.ts"],
       "@team-off/login": ["@team-off/login/src/index.ts"],
       "@team-off/snackbar": ["@team-off/snackbar/src/index.ts"],
+      "@team-off/teams-tabs": ["@team-off/teams-tabs/src/index.ts"],
       "@team-off/theme": ["@team-off/theme/src/index.ts"],
       "@team-off/topbar": ["@team-off/topbar/src/index.ts"]
     }

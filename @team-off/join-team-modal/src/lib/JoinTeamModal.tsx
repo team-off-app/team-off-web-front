@@ -12,7 +12,12 @@ import {
   RadioGroup,
 } from '@mui/material';
 import { useSignal, useSignalEffect } from '@preact/signals-react';
-import { client, Team, usersRequestSignal } from '@team-off/api';
+import {
+  client,
+  Team,
+  useGetTeamsAsyncRequest,
+  usersRequestSignal,
+} from '@team-off/api';
 import { useAsync } from 'react-async-hook';
 
 import { joinTeamModalSignal } from '../signals/modal';
@@ -22,14 +27,7 @@ export interface JoinTeamModalProps {}
 
 export function JoinTeamModal(props: JoinTeamModalProps) {
   const selectedTeam = useSignal<string | null>(null);
-  const teamsRequest = useAsync(
-    async () => {
-      const response = await client.get<Team[]>('/team');
-      return response.data;
-    },
-    [],
-    { executeOnMount: false },
-  );
+  const teamsRequest = useGetTeamsAsyncRequest();
 
   const joinTeamRequest = useAsync(
     async () => {
@@ -60,9 +58,7 @@ export function JoinTeamModal(props: JoinTeamModalProps) {
 
       <DialogContent>
         <Box display="flex" flexDirection="column" gap={2} py={1}>
-          {teamsRequest.loading && (
-            <CircularProgress sx={{ width: '100%', margin: 'auto' }} />
-          )}
+          {teamsRequest.loading && <CircularProgress sx={{ margin: 'auto' }} />}
 
           <FormControl>
             <RadioGroup

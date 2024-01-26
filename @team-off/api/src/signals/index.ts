@@ -5,5 +5,6 @@ import { UseAsyncReturn } from 'react-async-hook';
 import { User } from '../types';
 
 export const usersRequestSignal = signal<
-  UseAsyncReturn<AxiosResponse<User[], unknown>, never[]> | undefined
+  | UseAsyncReturn<AxiosResponse<User[], unknown> | undefined, number[]>
+  | undefined
 >(undefined);
