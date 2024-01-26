@@ -1,9 +1,11 @@
+import { Add, Logout } from '@mui/icons-material';
 import {
   AppBar,
   Avatar,
   Box,
   Container,
   IconButton,
+  ListItemIcon,
   Menu,
   MenuItem,
   Toolbar,
@@ -80,6 +82,9 @@ export function Topbar(props: TopbarProps) {
             closeMenu();
           }}
         >
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
           <Typography variant="inherit" noWrap>
             Logout
           </Typography>
