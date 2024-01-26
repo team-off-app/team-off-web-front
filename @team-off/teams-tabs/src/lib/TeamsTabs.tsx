@@ -1,6 +1,10 @@
 import { Tab, Tabs } from '@mui/material';
 import { signal, useSignalEffect } from '@preact/signals-react';
-import { Team, useGetTeamsAsyncRequest } from '@team-off/api';
+import {
+  Team,
+  teamsRequestSignal,
+  useGetTeamsAsyncRequest,
+} from '@team-off/api';
 
 /* eslint-disable-next-line */
 export interface TeamsTabsProps {}
@@ -15,6 +19,7 @@ export function TeamsTabs(props: TeamsTabsProps) {
   const teamsRequest = useGetTeamsAsyncRequest();
 
   useSignalEffect(() => {
+    teamsRequestSignal.value = teamsRequest;
     teamsRequest.execute();
   });
 
