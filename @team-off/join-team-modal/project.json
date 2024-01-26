@@ -1,0 +1,16 @@
+{
+  "name": "@team-off/join-team-modal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "@team-off/join-team-modal/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["@team-off/join-team-modal/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

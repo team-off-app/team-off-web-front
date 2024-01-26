@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
 import { Calendar } from '@team-off/calendar';
 import { CreateEventModal } from '@team-off/create-event-modal';
+import { JoinTeamModal } from '@team-off/join-team-modal';
 import { Topbar } from '@team-off/topbar';
 
 export function App() {
@@ -15,6 +16,7 @@ export function App() {
       </Container>
 
       <CreateEventModal />
+      <JoinTeamModal />
     </>
   );
 }

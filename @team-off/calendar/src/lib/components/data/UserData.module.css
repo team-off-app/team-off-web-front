@@ -1,0 +1,9 @@
+.hoverContainer:hover {
+  .addButton {
+    visibility: visible;
+  }
+}
+
+.addButton {
+  visibility: hidden;
+}

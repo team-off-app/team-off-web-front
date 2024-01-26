@@ -15,3 +15,8 @@ export type User = {
     type: string;
   }>;
 };
+
+export type Team = {
+  id: string;
+  name: string;
+};

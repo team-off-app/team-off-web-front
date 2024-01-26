@@ -24,6 +24,7 @@
       ],
       "@team-off/env": ["@team-off/env/src/index.ts"],
       "@team-off/error-overlay": ["@team-off/error-overlay/src/index.ts"],
+      "@team-off/join-team-modal": ["@team-off/join-team-modal/src/index.ts"],
       "@team-off/login": ["@team-off/login/src/index.ts"],
       "@team-off/snackbar": ["@team-off/snackbar/src/index.ts"],
       "@team-off/theme": ["@team-off/theme/src/index.ts"],
