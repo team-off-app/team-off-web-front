@@ -1,35 +1,40 @@
 import { client } from '@team-off/api';
-import { persistAccessToken } from '@team-off/auth';
-import { openSnackbar } from '@team-off/snackbar';
+import { persistAccessToken, resetAccessToken } from '@team-off/auth';
+import { closeSnackbar, openSnackbar } from '@team-off/snackbar';
 import { isAxiosError } from 'axios';
 import { useAsync } from 'react-async-hook';
-import { useNavigate } from 'react-router-dom';
 
-import { email, password } from './loginFormSignal';
-import { LoginFormView } from './LoginFormView';
+import { mode } from './modeSignal';
+import { email, name, password, resetSignUpForm } from './signUpFormSignal';
+import { SignUpFormView } from './SignUpFormView';
 
 /* eslint-disable-next-line */
 export interface SignUpFormProps {}
 
 export function SignUpForm(props: SignUpFormProps) {
-  const navigate = useNavigate();
-
-  const loginRequest = useAsync(
+  const signUpRequest = useAsync(
     async () =>
-      client.post<{ token: string }>('/login', {
+      await client.post('/users', {
+        name: name.value,
         login: email.value,
         password: password.value,
       }),
     [],
-    { executeOnMount: false }
+    { executeOnMount: false },
   );
 
-  async function login() {
+  async function signUp() {
     try {
-      const response = await loginRequest.execute();
+      closeSnackbar();
+      resetAccessToken();
+      const response = await signUpRequest.execute();
       persistAccessToken(response.data.token);
-      openSnackbar({ type: 'success', message: 'Welcome!' });
-      navigate('/');
+      openSnackbar({
+        type: 'success',
+        message: 'Account created! Now, you can login.',
+      });
+      resetSignUpForm();
+      mode.value = 'login';
     } catch (e) {
       if (isAxiosError(e) && e.response?.status === 403) {
         openSnackbar({
@@ -48,9 +53,9 @@ export function SignUpForm(props: SignUpFormProps) {
   }
 
   return (
-    <LoginFormView
-      isLoadingLoginBtn={loginRequest.loading}
-      onLoginBtnClick={login}
+    <SignUpFormView
+      onSignUpBtnClick={signUp}
+      isLoadingSignUpBtn={signUpRequest.status === 'loading'}
     />
   );
 }

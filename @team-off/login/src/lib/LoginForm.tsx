@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 import { useAsync } from 'react-async-hook';
 import { useNavigate } from 'react-router-dom';
 
-import { email, password } from './loginFormSignal';
+import { email, password, resetLoginForm } from './loginFormSignal';
 import { LoginFormView } from './LoginFormView';
 
 /* eslint-disable-next-line */
@@ -16,7 +16,7 @@ export function LoginForm(props: LoginProps) {
 
   const loginRequest = useAsync(
     async () =>
-      client.post<{ token: string }>('/auth/login', {
+      await client.post<{ token: string }>('/auth/login', {
         login: email.value,
         password: password.value,
       }),
@@ -31,6 +31,7 @@ export function LoginForm(props: LoginProps) {
       const response = await loginRequest.execute();
       persistAccessToken(response.data.token);
       openSnackbar({ type: 'success', message: 'Welcome!' });
+      resetLoginForm();
       navigate('/');
     } catch (e) {
       const message = e instanceof Error && e.message;

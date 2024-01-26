@@ -9,8 +9,8 @@ import {
 import { motion } from 'framer-motion';
 
 import { LoginForm } from './LoginForm';
-import { animationState,mode } from './modeSignal';
-import { SignUpFormView } from './SignUpFormView';
+import { animationState, mode } from './modeSignal';
+import { SignUpForm } from './SignUpForm';
 
 export function LoginView() {
   const theme = useTheme();
@@ -103,7 +103,7 @@ function LoginViewInnerContent() {
           borderBottomLeftRadius: 0,
         }}
       >
-        {mode.value === 'signup' ? <SignUpFormView /> : <SideContent />}
+        {mode.value === 'signup' ? <SignUpForm /> : <SideContent />}
       </Paper>
     </Container>
   );

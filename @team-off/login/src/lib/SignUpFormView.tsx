@@ -1,19 +1,26 @@
-import { Box, Button, FormControl, styled,TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  FormControl,
+  styled,
+  TextField,
+} from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { signal } from '@preact/signals-react';
 import { darkTheme } from '@team-off/theme';
 
 import { mode } from './modeSignal';
+import { email, name, password } from './signUpFormSignal';
 
 const Form = styled('form')(() => ({}));
 
-const signUpForm = signal<{ email: string; password: string; name: string }>({
-  email: '',
-  password: '',
-  name: '',
-});
+type SignUpFormViewProps = {
+  onSignUpBtnClick: () => void;
+  isLoadingSignUpBtn: boolean;
+};
 
-export function SignUpFormView() {
+export function SignUpFormView(props: SignUpFormViewProps) {
   return (
     <Form
       sx={{
@@ -29,27 +36,37 @@ export function SignUpFormView() {
           <TextField
             label="Name"
             variant="standard"
-            value={signUpForm.value.name}
-            onChange={(e) => (signUpForm.value.name = e.target.value)}
+            value={name.value}
+            onChange={(e) => (name.value = e.target.value)}
           />
           <TextField
             label="Email"
             variant="standard"
-            value={signUpForm.value.email}
-            onChange={(e) => (signUpForm.value.email = e.target.value)}
+            value={email.value}
+            onChange={(e) => (email.value = e.target.value)}
           />
           <TextField
             label="Password"
             variant="standard"
             type="password"
-            value={signUpForm.value.password}
-            onChange={(e) => (signUpForm.value.password = e.target.value)}
+            value={password.value}
+            onChange={(e) => (password.value = e.target.value)}
           />
         </FormControl>
       </ThemeProvider>
 
       <Box display="flex" width="100%" mt={4} gap={2}>
-        <Button variant="contained" color="white">
+        <Button
+          variant="contained"
+          color="white"
+          disabled={props.isLoadingSignUpBtn}
+          onClick={() => {
+            props.onSignUpBtnClick();
+          }}
+        >
+          {props.isLoadingSignUpBtn && (
+            <CircularProgress size={24} sx={{ mr: 1 }} />
+          )}
           Create account
         </Button>
 
