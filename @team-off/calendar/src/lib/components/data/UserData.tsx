@@ -1,29 +1,16 @@
-import {
-  Add,
-  DeleteForever,
-  GroupAdd,
-  PersonRemove,
-  RemoveCircleOutline,
-} from '@mui/icons-material';
-import {
-  Avatar,
-  Box,
-  Button,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Button, Menu, Typography } from '@mui/material';
 import { computed, signal } from '@preact/signals-react';
 import { User } from '@team-off/api';
-import { openCreateEventModal } from '@team-off/create-event-modal';
-import { openJoinTeamModal } from '@team-off/join-team-modal';
 import { useRef } from 'react';
 
 import { borderColor } from '../../constants';
+import { CreateEventMenuItem } from './CreateEventMenuItem';
+import { DeleteUserMenuItem } from './DeleteUserMenuItem';
+import { JoinTeamMenuItem } from './JoinTeamMenuItem';
+import { LeaveTeamMenuItem } from './LeaveTeamMenuItem';
 import classes from './UserData.module.css';
 
-const selectedUser = signal<string | null>(null);
+export const selectedUser = signal<string | null>(null);
 
 export function UserData({ user }: { user: User }) {
   const teams = computed(() => user.teams?.map((team) => team.name).join(', '));
@@ -78,56 +65,10 @@ export function UserData({ user }: { user: User }) {
             root: { sx: { backgroundColor: 'rgba(0,0,0,0.5)' } },
           }}
         >
-          <MenuItem
-            onClick={async () => {
-              openCreateEventModal(user);
-              selectedUser.value = null;
-            }}
-          >
-            <ListItemIcon>
-              <Add fontSize="small" />
-            </ListItemIcon>
-            <Typography variant="inherit" noWrap>
-              Create event
-            </Typography>
-          </MenuItem>
-          <MenuItem
-            onClick={async () => {
-              openJoinTeamModal(user);
-              selectedUser.value = null;
-            }}
-          >
-            <ListItemIcon>
-              <GroupAdd fontSize="small" />
-            </ListItemIcon>
-            <Typography variant="inherit" noWrap>
-              Join team
-            </Typography>
-          </MenuItem>
-          <MenuItem
-            onClick={async () => {
-              selectedUser.value = null;
-            }}
-          >
-            <ListItemIcon>
-              <RemoveCircleOutline fontSize="small" />
-            </ListItemIcon>
-            <Typography variant="inherit" noWrap>
-              Leave team
-            </Typography>
-          </MenuItem>
-          <MenuItem
-            onClick={async () => {
-              selectedUser.value = null;
-            }}
-          >
-            <ListItemIcon>
-              <DeleteForever fontSize="small" color="error" />
-            </ListItemIcon>
-            <Typography variant="inherit" noWrap color="error">
-              Delete user
-            </Typography>
-          </MenuItem>
+          <CreateEventMenuItem user={user} />
+          <JoinTeamMenuItem user={user} />
+          <LeaveTeamMenuItem />
+          <DeleteUserMenuItem />
         </Menu>
       </Box>
     </Box>
